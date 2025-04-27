@@ -1,52 +1,723 @@
-<!-- filepath: d:\Cours&TD&TP\Platforme de Développement web\TP1\index.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon CV en Ligne</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abderrahman MOUNASSIR - Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --accent: #3b82f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .easter-egg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .easter-egg-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .close-easter-egg {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 80vh;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--gray);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: var(--light);
+            border: 4px solid var(--primary);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-tag {
+            background-color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+                right: auto;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-      <h1>MOUNASSIR ABDERRAHMAN</h1>
-      <p>CyberSecurity Engineering Student</p>
-      <img src="picture.jpg" alt="Photo de Mounassir Abderrahman" class="profile-pic">
-  </header>
-<div class="sections-container">
-  <section id="experience">
-      <h2>Expérience Professionnelle</h2>
-      <article>
-          <h3>Stage en Cybersécurité</h3>
-          <p><strong>Entreprise DXC TECHNOLOGIE</strong> - Janvier 2026 à Mai 2026</p>
-          <ul>
-              <li>Analyse des vulnérabilités des systèmes d'information.</li>
-              <li>Réalisation de tests d'intrusion.</li>
-              <li>Rédaction de rapports de sécurité.</li>
-          </ul>
-      </article>
-  </section>
+    <!-- Œuf de Pâques -->
+    <div id="easter-egg" class="easter-egg">
+        <button class="close-easter-egg" id="close-easter-egg">&times;</button>
+        <div class="easter-egg-content">
+            <h2>Terminal Sécurité</h2>
+            <pre id="terminal-text">
+> Initialisation du système de sécurité...
+> Accès aux fichiers système...
+> Vérification de l'intégrité des données...
+> Bienvenue dans le terminal secret !
+            </pre>
+            <div id="terminal-interaction">
+                <span id="command-prompt">visiteur@portfolio:~$ </span>
+                <span id="cursor">|</span>
+            </div>
+        </div>
+    </div>
 
-  <section id="formation">
-      <h2>Formation</h2>
-      <h3><strong>EST BENI MELLAL</strong> - 2021 à 2023</h3>
-      <p>Diplôme universitaire de technologie en Génie Informatique</p>
-      <h3><strong>ENSIASD TAROUDANT</strong> - 2023 jusqu'à présent</h3>
-      <p>Cycle d'ingénieur en CyberSecurity</p>
-  </section>
+    <header>
+        <nav>
+            <div class="logo">AM</div>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#education">Formation</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Abderrahman MOUNASSIR</h1>
+            <p>Élève ingénieur en Sécurité IT et Confiance numérique</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Me contacter</a>
+                <a href="#projects" class="btn btn-secondary">Voir mes projets</a>
+            </div>
+        </div>
+    </header>
 
-  <section id="competences">
-      <h2>Compétences</h2>
-      <ul>
-          <li>Langages de programmation : Python, Java, C++</li>
-          <li>Outils de sécurité : Wireshark, Metasploit, Burp Suite, AWS CLI, PACU CLOUD</li>
-          <li>Connaissances en réseaux et systèmes d'exploitation</li>
-          <li>Connaissance en CLOUD PENTESTING</li>
-      </ul>
-  </section>
-</div>
-  <footer>
-      <p>Contact : abdoumnr4@gmail.com | Abderrahman Mounassir</p>
-  </footer>
+    <section id="about">
+        <h2>À propos de moi</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="picture.jpg" alt="Abderrahman MOUNASSIR">
+            </div>
+            <div class="about-text">
+                <p>Je suis Abderrahman MOUNASSIR, élève ingénieur en Sécurité IT et Confiance numérique à l'École Nationale Supérieure de l'Intelligence Artificielle et Sciences des Données de Taroudant. Passionné par la cybersécurité et le développement web, je cherche constamment à approfondir mes connaissances et compétences dans ces domaines.</p>
+                <p>Avec une solide formation technique et des expériences pratiques, je suis capable de concevoir et développer des solutions sécurisées pour répondre aux besoins spécifiques des utilisateurs et des entreprises.</p>
+                <h3>Compétences</h3>
+                <div class="skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">SSH</span>
+                    <span class="skill-tag">Nmap</span>
+                    <span class="skill-tag">Metasploit</span>
+                    <span class="skill-tag">Bettercap</span>
+                    <span class="skill-tag">Burp Suite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Formation académique</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Présent</div>
+                    <h3 class="timeline-title">École Nationale Supérieure de l'Intelligence Artificielle et Sciences des Données</h3>
+                    <p>2ème année cycle ingénieur d'état, Filière: Sécurité IT et confiance numérique</p>
+                    <p>Taroudant, Maroc</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021 - 2023</div>
+                    <h3 class="timeline-title">École Supérieure de Technologie</h3>
+                    <p>DUT en Génie Informatique</p>
+                    <p>Beni Mellal, Maroc</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Expérience professionnelle</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Avril - Juin 2023</div>
+                    <h3 class="timeline-title">Stage de fin d'étude - Spark Tech</h3>
+                    <p>Application Web de Consultation et Assistance AI pour Actualités Médicales</p>
+                    <ul>
+                        <li>Développement d'une application web permettant la consultation des actualités médicales</li>
+                        <li>Intégration d'un assistant AI via l'API OpenAI</li>
+                        <li>Conception de l'interface utilisateur en utilisant Laravel et VueJs</li>
+                    </ul>
+                    <p>Marrakech, Maroc</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Juin - Juillet 2022</div>
+                    <h3 class="timeline-title">Stage d'initiation - CNIM BABCKOK MAROC</h3>
+                    <p>Application Desktop : Gestion des Clients</p>
+                    <ul>
+                        <li>Conception et développement d'une application desktop en C-Sharp</li>
+                        <li>Implémentation d'une base de données relationnelle MySQL</li>
+                        <li>Création d'une interface utilisateur intuitive et interactive</li>
+                    </ul>
+                    <p>Casablanca, Maroc</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="OIP.jpeg" alt="Analyse et Évaluation des Menaces pour les Systèmes Cloud AWS">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Analyse et Évaluation des Menaces pour les Systèmes Cloud AWS</h3>
+                    <p>Identification et exploitation des vulnérabilités sur AWS, incluant les instances EC2, les buckets S3 et les permissions IAM.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">Cybersécurité</span>
+                        <span class="project-tag">Pacu</span>
+                        <span class="project-tag">CloudTrail</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="backdoor-1.jpg" alt="Création d'une Backdoor">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Création d'une Backdoor</h3>
+                    <p>Développement d'une backdoor en Python, capable d'établir une connexion TCP à distance et d'exécuter des commandes sur la machine cible.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Sécurité</span>
+                        <span class="project-tag">TCP</span>
+                        <span class="project-tag">Obfuscation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="OIP (1).jpeg" alt="Plateforme E-commerce pour Produits Cosmétiques Bio">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Plateforme E-commerce pour Produits Cosmétiques Bio</h3>
+                    <p>Développement d'une plateforme e-commerce permettant aux agriculteurs de vendre des produits cosmétiques bio en ligne.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Laravel</span>
+                        <span class="project-tag">React.js</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">E-commerce</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Votre message"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Envoyer</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/abderrahman-mounassir" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/abdoumnr" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:abdoumnr4@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+212674399392"><i class="fas fa-phone"></i></a>
+        </div>
+        <p>&copy; 2025 Abderrahman MOUNASSIR. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Œuf de Pâques - Konami Code
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', function(e) {
+            // Vérifie si la touche correspond à la séquence Konami
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                
+                // Si toute la séquence est complétée
+                if (konamiIndex === konamiCode.length) {
+                    activateEasterEgg();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+        
+        function activateEasterEgg() {
+            document.getElementById('easter-egg').style.display = 'block';
+            startTerminalAnimation();
+        }
+        
+        document.getElementById('close-easter-egg').addEventListener('click', function() {
+            document.getElementById('easter-egg').style.display = 'none';
+        });
+        
+        // Animation du terminal
+        function startTerminalAnimation() {
+            const cursor = document.getElementById('cursor');
+            setInterval(() => {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }, 500);
+            
+            // Ajouter des comportements interactifs au terminal
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('easter-egg').style.display === 'block') {
+                    if (e.key === 'Enter') {
+                        const commandPrompt = document.getElementById('command-prompt');
+                        const commandText = commandPrompt.textContent.split('$')[1].trim();
+                        
+                        // Ajouter des commandes spécifiques
+                        if (commandText === 'help') {
+                            addTerminalOutput('Commandes disponibles: help, skills, contact, clear, exit');
+                        } else if (commandText === 'skills') {
+                            addTerminalOutput('Compétences en cybersécurité:\n- Pentesting\n- Analyse de vulnérabilités\n- Sécurité Cloud\n- Développement sécurisé');
+                        } else if (commandText === 'contact') {
+                            addTerminalOutput('Email: abdoumnr4@gmail.com\nTél: 06 74 39 93 92');
+                        } else if (commandText === 'clear') {
+                            clearTerminal();
+                        } else if (commandText === 'exit') {
+                            document.getElementById('easter-egg').style.display = 'none';
+                        } else {
+                            addTerminalOutput(`Commande non reconnue: ${commandText}. Tapez 'help' pour voir les commandes disponibles.`);
+                        }
+                        
+                        // Réinitialiser le prompt
+                        commandPrompt.textContent = 'visiteur@portfolio:~$ ';
+                    } else if (e.key === 'Backspace') {
+                        const commandPrompt = document.getElementById('command-prompt');
+                        const parts = commandPrompt.textContent.split('$');
+                        if (parts[1].length > 1) {
+                            commandPrompt.textContent = `${parts[0]}$${parts[1].slice(0, -1)}`;
+                        }
+                    } else if (e.key.length === 1) { // Caractère simple
+                        const commandPrompt = document.getElementById('command-prompt');
+                        commandPrompt.textContent += e.key;
+                    }
+                }
+            });
+        }
+        
+        function addTerminalOutput(text) {
+            const terminalText = document.getElementById('terminal-text');
+            terminalText.innerHTML += `\n> ${text}`;
+            terminalText.scrollTop = terminalText.scrollHeight;
+        }
+        
+        function clearTerminal() {
+            document.getElementById('terminal-text').innerHTML = '> Terminal réinitialisé.';
+        }
+        
+        // Animation de défilement fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
